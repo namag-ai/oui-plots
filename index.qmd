@@ -77,6 +77,7 @@ Second, we will combine both measures together to suggest better metrics for cov
 
 
 ## Outcome-informed Love plot
+<!-- See possible refs: https://socviz.co/lookatdata.html (1.5); https://clauswilke.com/dataviz/aesthetic-mapping.html; https://web.cse.ohio-state.edu/~shen.94/Melbourne/Slides/TamaraChp5.pdf; https://uwdata.github.io/visualization-curriculum/altair_marks_encoding.html; https://www.csl.mtu.edu/cs5631.ck/common/05-Marks-Channels.pdf; -->
 <!-- ### Grammar of graphics -->
 <!-- To justify our approach, we briefly introduce the basic concept behind data visualization. -->
 Data visualization allows us to encode numeric data values as visual elements.
