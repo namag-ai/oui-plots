@@ -25,9 +25,9 @@ Things to touch on:
   * love plot (but also other plots like scatter)
   * encoding visual channels
 
-# Abstract
+## Abstract
 
-# Introduction
+## Introduction
 Covariate balancing is a significant and essential concept for causal inference from observational studies.
 Generally, balance diagnostics assess the difference in covariate distribution between exposures levels.
 Intuitively, if the covariate distribution is the same across exposure groups, there will be no systematic bias in exposure and difference in outcomes will only be due to the exposure status.
