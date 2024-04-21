@@ -47,22 +47,22 @@ Therefore, the most common approach to select confounders for an adjustment set
 is to let a domain expert hand pick them manually.
 The structure arising from this specification is often formulated and presented as a Directed Acyclic Graph (DAG),
 where variables are depicted as nodes and two nodes are connected by an arrow if one causally influences the other [cite DAG intro].
-<!-- Since This formulation of the structure of the problem, often through a Directed Acylclic Graph (DAG),  -->
+<!-- Since This formulation of the structure of the problem, often through a Directed Acyclic Graph (DAG),  -->
 When specifying how any pair of variables interact,
-the excluction of an edge -- assuming there is no association whatsoever -- is a much stronger assumption than its inclusion -- allowing the model to infer zero association from the data.
+the exclusion of an edge -- assuming there is no association whatsoever -- is a much stronger assumption than its inclusion -- allowing the model to infer zero association from the data.
 Thus, when determining the structure, modellers may prefer to err on the inclusion of edges, rather than their exclusion.
 
 Most importantly, since the structure -- and therefore the confounders -- are determined a-priori, based on prior knowledge rather than data, we denote them \emph{structural confounders}.
 However, an a-priori \emph{structural confounder} may not necessarily be an a-posteriori \emph{statistical confounder}.
 Namely, the prior assumption a variable is associated with both exposure and outcome may not manifest at the data at hand.
-This is quite plausible, even in the absence of finite sampling errors, since we often build DAGs one pair at a time, failing to frasp how many factors may interact to determine the exposure or outcome conditioned on all the other factors.
+This is quite plausible, even in the absence of finite sampling errors, since we often build DAGs one pair at a time, failing to grasp how many factors may interact to determine the exposure or outcome conditioned on all the other factors.
 For instance, a factor we assumed is considered when prescribing medicine may not be used,
-or we can fail to understand the mechanism underwhich a certain factor conditionally explains the outcome.
-Both will result with the factor not being statistically associated with the exposure or outcome, resepctively (or both).
+or we can fail to understand the mechanism under which a certain factor conditionally explains the outcome.
+Both will result with the factor not being statistically associated with the exposure or outcome, respectively (or both).
 
 Covariate balance assessments only capture covariate-exposure associations.
 This can be insufficient.
-For example, such a putative confounder may heavily influence differential exposure, leading to high imbalance, but have no impact on the outcome (these may be referred to as istruemntal variables).
+For example, such a putative confounder may heavily influence differential exposure, leading to high imbalance, but have no impact on the outcome (these may be referred to as istrumental variables).
 In such cases, it will be unnecessary (or even harmful [cite z-bias]) to balance over that putative confounder.
 However, commonly used diagnostics like the (Absolute) Standardized Mean Difference (ASMD) [cite] and the corresponding Love plot [cite] will fail to capture that and may mislead the researcher to focus on where they should not.
 
