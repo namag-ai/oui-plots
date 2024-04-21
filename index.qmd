@@ -115,6 +115,39 @@ This will reduce clutter and allow the viewer to focus on the more important (an
 Meanwhile, option (3) clusters more important covariates to specific regions of the plot. 
 All options achieve a similar objective of differential attention onto more important covariates, 
 either by differential prominence (transparency and size) or by differential spatial location (order).
+See Figure [cross ref] for details.
 
 ## Outcome-informed balance metrics
+Oftentimes, we use the ASMD for model selection.
+For instance, the maximum ASMD after adjustment (e.g., weighting or matching) across all covariates can be considered as a good summary of the Love plot. 
+Max post-adjustment ASMD describes the worst case scenario for imbalance.
+If our model can keep the max ASMD -- and therefore the ASMD for all covariate -- under reasonable tolerance (0.1 threshold is arbitrarily but commonly used), then we can gain further trust in the downstream effect being estimated.
+Once we have a single numeric metric that diagnoses model performance, we can use it to choose between two (or more) candidates models, choosing the one with minimal post-adjustment max ASMD.
 
+However, as argued above, ASMD alone can be a poor diagnostic. 
+If the covariate with max ASMD has little conditional association with the outcome, there is little benefit in making the effort to improve its balancing. 
+That covariate should not be part of the model's objective.
+In fact, that covariate creates a distorted image of the desired confounder balance.
+
+One possible solution is combining the ASMD with the covariate importance measures into a single number metric. 
+In this manuscript, we argue for the multiplication of the two.
+Multiplication can assess the interaction of the two complementary, orthogonal measures.
+Specifically, it addresses the issue depicted above naturally, by allowing the two measures to cancel out each other. 
+For example, small covariate-outcome importance will lead to small score overall, regardless of how large or small is the corresponding ASMD,
+<!-- and similarly for small ASMD.  -->
+and vice versa.
+<!-- This answers directly the desiderata -->
+High scoring covariates will, therefore, only be comprised of both large ASMD \emph{and} large covariate-outcome importance - meaning strong covariate-exposure association and strong covariate-outcome association, which is exactly the definition of a confounder.
+
+## Methods
+
+  * balance measures
+  * feature importance measures
+  * data simulation model
+  * love plot (but also other plots like scatter)
+  * encoding visual channels
+
+
+## Results?
+
+## Discussion
