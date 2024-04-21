@@ -62,7 +62,7 @@ Both will result with the factor not being statistically associated with the exp
 
 Covariate balance assessments only capture covariate-exposure associations.
 This can be insufficient.
-For example, such a putative confounder may heavily influence differential exposure, leading to high imbalance, but have no impact on the outcome (these may be referred to as istrumental variables).
+For example, such a putative confounder may heavily influence differential exposure, leading to high imbalance, but have no impact on the outcome (these may be referred to as instrumental variables).
 In such cases, it will be unnecessary (or even harmful [cite z-bias]) to balance over that putative confounder.
 However, commonly used diagnostics like the (Absolute) Standardized Mean Difference (ASMD) [cite] and the corresponding Love plot [cite] will fail to capture that and may mislead the researcher to focus on where they should not.
 
@@ -94,7 +94,7 @@ to three graphical channels: y-axis, x-axis, and color
 
 In outcome-informed Love plot, we calculate an additional data dimension: 
 the covariate-outcome impact ("feature importance") of each covariate on the outcome.
-The coviarate-outcome importance is a non-negative score positively associated with importance.
+The covariate-outcome importance is a non-negative score positively associated with importance.
 Namely, a low score indicates relatively small importance -- a change in the covariate levels is associated with only small changes in the outcome, 
 and a high score indicates relatively high importance -- a change in the covariate levels is associated with large changes in the outcome.
 There are several approaches to calculate feature importance, which we describe in more details in the Methods [cross ref].
