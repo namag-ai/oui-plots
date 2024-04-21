@@ -1,9 +1,9 @@
 ---
 title: "Oui-Love Plots: Outcome-informed Love plots for covariate balance in causal inference"
-format:
-  html:
-    code-fold: false
-jupyter: python3
+# format:
+#   html:
+#     code-fold: false
+# jupyter: python3
 ---
 
 
@@ -76,10 +76,45 @@ Second, we will combine both measures together to suggest better metrics for cov
 [TODO: isn't high-dimensional propensity score?].
 
 
-## Visual
-brief introduction to visualization and dimesion and markers and mapping.
-explain love plot in terms of visual markers and dimensions
-different dimension
-map that dimension to additional marker
+## Outcome-informed Love plot
+<!-- ### Grammar of graphics -->
+<!-- To justify our approach, we briefly introduce the basic concept behind data visualization. -->
+Data visualization allows us to encode numeric data values as visual elements.
+When we "visualize data" we essentially map between data values to graphical elements.
+Good, consistent visualization will map different dimensions of the data to different encoding channel types using appropriate graphical marks. 
 
+For instance, a classic Love plot [cite, refer to one] maps 
+the covariates to the y-axis - so each covariates get its own row,
+the (absolute) standardized mean difference (ASMD) of each covariate to the x-axis,
+the type of the model (e.g., weighted/unweighted) to the color (blue/orange)
+and possibly also to different markers (circle/triangle).
+All in all, we mapped three data dimensions: covariates, their ASMD, and adjustment model, 
+to three graphical channels: y-axis, x-axis, and color 
+(and possibly a fourth channel of marker shape for emphasis).
+
+In outcome-informed Love plot, we calculate an additional data dimension: 
+the covariate-outcome impact ("feature importance") of each covariate on the outcome.
+The coviarate-outcome importance is a non-negative score positively associated with importance.
+Namely, a low score indicates relatively small importance -- a change in the covariate levels is associated with only small changes in the outcome, 
+and a high score indicates relatively high importance -- a change in the covariate levels is associated with large changes in the outcome.
+There are several approaches to calculate feature importance, which we describe in more details in the Methods [cross ref].
+
+To augment the traditional Love plot, 
+the additional dimension for the covariate-outcome importance score should be mapped to one or more visual channels.
+In this work we suggest three candidate channels [cross ref figure], which can be combined arbitrarily:
+  
+  1. The opacity channel. Marks corresponding to more important covariates are more opaque, while less important marks are more transparent. 
+  2. The size channel. Marks corresponding to more important covariate are larger, while less important marks are smaller.
+  3. The order of the y-axis. Covariates are ranked by their importance with more important covariates appearing on top. 
+
+The common property for options (1) and (2) is that less important covariates appear less prominent, 
+either being smaller or more transparent. 
+The argument being that if they do not influence the outcome, they will not bias the estimation, and therefore are not important and less interesting to examine.
+If they are less interesting to examine, there is less need for them to stand out and can therefore be salient. 
+This will reduce clutter and allow the viewer to focus on the more important (and thus prominent) covariates.
+Meanwhile, option (3) clusters more important covariates to specific regions of the plot. 
+All options achieve a similar objective of differential attention onto more important covariates, 
+either by differential prominence (transparency and size) or by differential spatial location (order).
+
+## Outcome-informed balance metrics
 
