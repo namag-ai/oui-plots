@@ -3,7 +3,7 @@ title: "Oui-Love Plots: Outcome-informed Love plots for covariate balance in cau
 author: "Ehud Karavani"
 # format:
 #   html:
-#     code-fold: false
+#     fig-format: svg
 # jupyter: python3
 ---
 
@@ -80,7 +80,7 @@ Second, we will combine both measures together to suggest better metrics for cov
 ## Outcome-informed Love plot
 
 <!-- :::{.column-page} -->
-{{< embed resources/ouilove_plot.ipynb#fig-love-oui-love >}}
+{{< embed notebooks/ouilove_plot.ipynb#fig-love-oui-love >}}
 <!-- ::: -->
 
 <!-- See possible refs: https://socviz.co/lookatdata.html (1.5); https://clauswilke.com/dataviz/aesthetic-mapping.html; https://web.cse.ohio-state.edu/~shen.94/Melbourne/Slides/TamaraChp5.pdf; https://uwdata.github.io/visualization-curriculum/altair_marks_encoding.html; https://www.csl.mtu.edu/cs5631.ck/common/05-Marks-Channels.pdf; -->
@@ -108,7 +108,7 @@ There are several approaches to calculate feature importance, which we describe 
 
 To augment the traditional Love plot, 
 the additional dimension for the covariate-outcome importance score should be mapped to one or more visual channels.
-In this work we suggest three candidate channels [@resources/ouilove_plot.ipynb#fig-fig-oui-encoding], which can be combined arbitrarily:
+In this work we suggest three candidate channels [@fig-oui-encoding], which can be combined arbitrarily:
   
   1. The opacity channel. Marks corresponding to more important covariates are more opaque, while less important marks are more transparent. 
   2. The size channel. Marks corresponding to more important covariate are larger, while less important marks are smaller.
@@ -126,7 +126,7 @@ either by differential prominence (transparency and size) or by differential spa
 See Figure [cross ref] for details.
 
 <!-- :::{.column-page} -->
-{{< embed resources/ouilove_plot.ipynb#fig-oui-encoding >}}
+{{< embed notebooks/ouilove_plot.ipynb#fig-oui-encoding >}}
 <!-- ::: -->
 
 ## Outcome-informed balance metrics
@@ -159,7 +159,7 @@ High scoring covariates will, therefore, only be comprised of both large ASMD \e
   * love plot (but also other plots like scatter)
   * encoding visual channels
 
-{{< embed resources/dag-1.qmd#fig-dag1 >}}
+{{< embed notebooks/dag_dgp_1.ipynb#fig-dag1 >}}
 
 
 ## Results?

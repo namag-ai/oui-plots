@@ -3,7 +3,7 @@ project:
 
 manuscript:
   notebooks:
-    - notebook: resources/dag-1.qmd
+    - notebook: notebooks/dag_dgp_1.ipynb
       title: Data generating process
-    - notebook: resources/ouilove_plot.ipynb
+    - notebook: notebooks/ouilove_plot.ipynb
       title: Outcome-informed Love plot

@@ -1,4 +1,13 @@
-# Data generating process 1
+---
+format:
+  html:
+    fig-format: svg
+  ipynb: 
+    fig-format: svg
+---
+
+
+# _Data generating process 1
 
 ```{python}
 import numpy as np
@@ -64,6 +73,7 @@ Combining both to a single figure:
 ```{python}
 #| label: fig-dag1
 #| fig-cap: Confounding structure underlying the simulation example. Right is the true confounding structure where $X_0$ is not associated with neither the exposure $A$ nor the outcome $Y$, $X_A$ only influence the exposure, $X_Y$ only influences the outcome, and $X_{AY}$ is the only true confounder influencing both $A$ and $Y$. Left is the assumed confounding structure where all variables assumed to be confounders influencing both the treatment and the outcome. Wrongly specified edges are depicted red and dashed. 
+#| fig-format: svg
 
 fig, axes = plt.subplots(1, 2, figsize=(6, 1.5))
 
