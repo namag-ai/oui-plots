@@ -198,7 +198,10 @@ $$
 The directed acyclic graph depicting this setting (@fig-dag1) 
 describes a setting where $X_0, X_A, X_Y$ are wrongly considered to be confounders (influence both exposure and outcome) a-priori, but are actually not.
 
+
+<!-- ::: {.column-margin} -->
 {{< embed notebooks/dag_dgp_1.ipynb#fig-dag1 >}}
+<!-- ::: -->
 
 <!-- ## Results? -->
 
