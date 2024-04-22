@@ -1,0 +1,9 @@
+project: 
+  type: manuscript
+
+manuscript:
+  notebooks:
+    - notebook: notebooks/dag_dgp_1.ipynb
+      title: Data generating process
+    - notebook: notebooks/ouilove_plot.ipynb
+      title: Outcome-informed Love plot

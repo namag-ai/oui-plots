@@ -1,8 +1,9 @@
 ---
 title: "Oui-Love Plots: Outcome-informed Love plots for covariate balance in causal inference"
+author: "Ehud Karavani"
 # format:
 #   html:
-#     code-fold: false
+#     fig-format: svg
 # jupyter: python3
 ---
 
@@ -77,6 +78,11 @@ Second, we will combine both measures together to suggest better metrics for cov
 
 
 ## Outcome-informed Love plot
+
+<!-- :::{.column-page} -->
+{{< embed notebooks/ouilove_plot.ipynb#fig-love-oui-love >}}
+<!-- ::: -->
+
 <!-- See possible refs: https://socviz.co/lookatdata.html (1.5); https://clauswilke.com/dataviz/aesthetic-mapping.html; https://web.cse.ohio-state.edu/~shen.94/Melbourne/Slides/TamaraChp5.pdf; https://uwdata.github.io/visualization-curriculum/altair_marks_encoding.html; https://www.csl.mtu.edu/cs5631.ck/common/05-Marks-Channels.pdf; -->
 <!-- ### Grammar of graphics -->
 <!-- To justify our approach, we briefly introduce the basic concept behind data visualization. -->
@@ -84,7 +90,7 @@ Data visualization allows us to encode numeric data values as visual elements.
 When we "visualize data" we essentially map between data values to graphical elements.
 Good, consistent visualization will map different dimensions of the data to different encoding channel types using appropriate graphical marks. 
 
-For instance, a classic Love plot [cite, refer to one] maps 
+For instance, a classic Love plot [cite] (@fig-love-oui-love) maps 
 the covariates to the y-axis - so each covariates get its own row,
 the (absolute) standardized mean difference (ASMD) of each covariate to the x-axis,
 the type of the model (e.g., weighted/unweighted) to the color (blue/orange)
@@ -102,7 +108,7 @@ There are several approaches to calculate feature importance, which we describe 
 
 To augment the traditional Love plot, 
 the additional dimension for the covariate-outcome importance score should be mapped to one or more visual channels.
-In this work we suggest three candidate channels [cross ref figure], which can be combined arbitrarily:
+In this work we suggest three candidate channels [@fig-oui-encoding], which can be combined arbitrarily:
   
   1. The opacity channel. Marks corresponding to more important covariates are more opaque, while less important marks are more transparent. 
   2. The size channel. Marks corresponding to more important covariate are larger, while less important marks are smaller.
@@ -113,10 +119,15 @@ either being smaller or more transparent.
 The argument being that if they do not influence the outcome, they will not bias the estimation, and therefore are not important and less interesting to examine.
 If they are less interesting to examine, there is less need for them to stand out and can therefore be salient. 
 This will reduce clutter and allow the viewer to focus on the more important (and thus prominent) covariates.
-Meanwhile, option (3) clusters more important covariates to specific regions of the plot. 
+Meanwhile, option (3) clusters more important covariates to specific regions of the plot, 
+but breaks the standard of ordering covariates by the unadjusted ASMD that may be familiar to practitioners. 
 All options achieve a similar objective of differential attention onto more important covariates, 
 either by differential prominence (transparency and size) or by differential spatial location (order).
 See Figure [cross ref] for details.
+
+<!-- :::{.column-page} -->
+{{< embed notebooks/ouilove_plot.ipynb#fig-oui-encoding >}}
+<!-- ::: -->
 
 ## Outcome-informed balance metrics
 Oftentimes, we use the ASMD for model selection.
@@ -144,9 +155,11 @@ High scoring covariates will, therefore, only be comprised of both large ASMD \e
 
   * balance measures
   * feature importance measures
-  * data simulation model
+  * data simulation model (@fig-dag1)
   * love plot (but also other plots like scatter)
   * encoding visual channels
+
+{{< embed notebooks/dag_dgp_1.ipynb#fig-dag1 >}}
 
 
 ## Results?
