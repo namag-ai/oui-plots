@@ -7,25 +7,6 @@ author: "Ehud Karavani"
 # jupyter: python3
 ---
 
-
-Things to touch on:
-
-* covariate balance
-  * a/smd
-  * love plot
-* structural confounders vs actual confounders
-* ASMD alone is not sufficient
-* outcome-covariate importance
-* augmenting love plot visually
-  * visualization channels / markers
-* combining ASMD with outcome importance for joint measurement for covariate/model selection
-* Methods:
-  * balance measures
-  * feature importance measures
-  * data simulation model
-  * love plot (but also other plots like scatter)
-  * encoding visual channels
-
 ## Abstract
 
 ## Introduction
