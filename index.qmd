@@ -153,15 +153,67 @@ High scoring covariates will, therefore, only be comprised of both large ASMD \e
 
 ## Methods
 
-  * balance measures
-  * feature importance measures
-  * data simulation model (@fig-dag1)
-  * love plot (but also other plots like scatter)
-  * encoding visual channels
+### Covariate balance measures
+The task of assessing covariate balancing is essentially a two-sample test between the exposed and unexposed.
+Since two-sample tests often do not scale, making the comparison of two multivariable distributions ill-defined, researchers resort to comparing multiple univariable distributions by examining each covariate separately.
+For balance assessment in causal inference modeling, the most common metric used is the standardized mean difference (SMD).
+The SMD is the difference in covariate averages divided by the pooled standard error.
+Mathematically, for each covariate $j$ we define:
+$$
+SMD_j = \frac{\bar{x}_j \vert_{A=1}- \bar{x}_j\vert_{A=0}}{\sqrt{\hat{\sigma}_j^2\vert_{A=1} + \hat{\sigma}_j^2\vert_{A=0}}}
+$$
+Where $\bar{x}_j \vert_{A=1}$ is the average of feature $x_j$ among those exposed, and $\hat{\sigma}_j^2\vert_{A=0}$ is the estimated standard deviation of $x_j$ among the unexposed.
+Furthermore, since the direction of the bias is insignificant, we further take the absolute value and denote the $ASMD_j = \left\vert SMD_j \right\vert$.
+
+### Covariate importance measures
+The task of assessing the influence of covariates on an outcome is a well established task in statistics,
+often utilized for dimensionality reduction (feature selection) or model selection.
+There are multiple approaches to compute this importance:
+regression models can use absolute magnitude of coefficients (assuming input is standardized), 
+or non-zero coefficients in L1-penalized (LASSO) regression.
+In models more generally, covariate importance can be assessed by how "excluding" each covariate affect some goodness-of-fit metric. 
+This "exclusion" is either done by removing the feature entirely from the model or just shuffling its values across observations.
+The goodness-of-fit evaluated can be any arbitrary metric like decreasing the loss or increasing the accuracy.
+The change in goodness-of-fit can either be multiplicative or additive, grounding the full model (with al covariates) as the baseline to compare against.
+Covariates that are more important for predicting the outcome will cause larger decrease in performance relative to the full model (including these covariates), meaning they are the ones driving the accuracy of the predictions.
+
+In this work, our goodness-of-fit metric is the natural deviance, which, since our outcome is continuous, is the mean squared error. 
+Additionally, we consider only importance measures that are conditional on all other covariates and exposure.
+Namely, we don't consider multiple univariable importance measures, and we always additionally condition on the exposure [vanderwheele]. 
+However, outcome-informed Love plot can work with any arbitrary non-negative importance measure, where lower scores correspond to small importance and higher scores to high importance.
+
+### Data
+
+We present our augmented Love plot on a minimally sufficient data simulation.
+The simulation includes four covariates, 
+one ($X_0$) is not associated with neither the exposure ($A$) nor the outcome ($Y$),
+one ($X_A$) is associated only with the exposure, 
+another ($X_Y$) only with the outcome,
+and one ($X_{AY}$), whose a true confounder, is associated with both.
+Mathematically, the full generating process is
+$$
+\begin{aligned}
+  Y &\sim A + X_Y + X_{AY} + \epsilon \\  
+  A &\sim Bernoulli(\pi) \\  
+  logit^-1(\pi) &= X_A + X_{AY} \\  
+  X_0, X_A, X_Y, X_{AY} &\sim Normal(0, 1) \\
+  \epsilon &\sim Normal(0, 1)
+\end{aligned}
+$$
+The directed acyclic graph depicting this setting (@fig-dag1) 
+describes a setting where $X_0, X_A, X_Y$ are wrongly considered to be confounders (influence both exposure and outcome) a-priori, but are actually not.
 
 {{< embed notebooks/dag_dgp_1.ipynb#fig-dag1 >}}
 
-
-## Results?
+<!-- ## Results? -->
 
 ## Discussion
+
+### More covariate balance plots
+This encoding is not limited to the standard Love plot,
+but to other covariate-balance plots as well like scatter plots and slope graphs
+
+### TODO:
+if our method is just the importance of outcome, we can end up balancing many prognostic confounders that are not actually confounders. 
+we can also calculate the covariate-exposure importance and then multiple the two importances.
+But doesn't the covariate-exposure importance captures by the ASMD to begin with?
