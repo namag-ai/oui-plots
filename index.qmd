@@ -79,9 +79,9 @@ Second, we will combine both measures together to suggest better metrics for cov
 
 ## Outcome-informed Love plot
 
-<!-- :::{.column-page} -->
+:::{.column-screen-inset}
 {{< embed notebooks/ouilove_plot.ipynb#fig-love-oui-love >}}
-<!-- ::: -->
+:::
 
 <!-- See possible refs: https://socviz.co/lookatdata.html (1.5); https://clauswilke.com/dataviz/aesthetic-mapping.html; https://web.cse.ohio-state.edu/~shen.94/Melbourne/Slides/TamaraChp5.pdf; https://uwdata.github.io/visualization-curriculum/altair_marks_encoding.html; https://www.csl.mtu.edu/cs5631.ck/common/05-Marks-Channels.pdf; -->
 <!-- ### Grammar of graphics -->
@@ -125,9 +125,9 @@ All options achieve a similar objective of differential attention onto more impo
 either by differential prominence (transparency and size) or by differential spatial location (order).
 See Figure [cross ref] for details.
 
-<!-- :::{.column-page} -->
+:::{.column-screen-inset}
 {{< embed notebooks/ouilove_plot.ipynb#fig-oui-encoding >}}
-<!-- ::: -->
+:::
 
 ## Outcome-informed balance metrics
 Oftentimes, we use the ASMD for model selection.
