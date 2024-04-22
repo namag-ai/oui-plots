@@ -1,6 +1,20 @@
 ---
 title: "Oui-Love Plots: Outcome-informed Love plots for covariate balance in causal inference"
-author: "Ehud Karavani"
+author: 
+  - name: "Ehud Karavani"
+    orcid: 0000-0002-0187-5437
+    email: ehudk@ibm.com
+    affiliation:
+      - name: IBM Research, Israel
+keywords: 
+  - Causal inference
+  - Data visualization
+  - Standardized mean difference
+  - Model evaluation
+  - Feature selection
+  # - Propensity score
+  # - Matching
+  # - Inverse probability weighting
 # format:
 #   html:
 #     fig-format: svg
