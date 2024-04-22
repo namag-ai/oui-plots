@@ -194,10 +194,10 @@ Mathematically, the full generating process is
 $$
 \begin{aligned}
   Y &\sim A + X_Y + X_{AY} + \epsilon \\  
-  A &\sim Bernoulli(\pi) \\  
-  logit^-1(\pi) &= X_A + X_{AY} \\  
-  X_0, X_A, X_Y, X_{AY} &\sim Normal(0, 1) \\
-  \epsilon &\sim Normal(0, 1)
+  A &\sim \text{Bernoulli}(\pi) \\  
+  \text{logit}(\pi) &= X_A + X_{AY} \\  
+  X_0, X_A, X_Y, X_{AY} &\sim \text{Normal}(0, 1) \\
+  \epsilon &\sim \text{Normal}(0, 1)
 \end{aligned}
 $$
 The directed acyclic graph depicting this setting (@fig-dag1) 
