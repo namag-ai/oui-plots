@@ -1,0 +1,9 @@
+project: 
+  type: manuscript
+
+manuscript:
+  notebooks:
+    - notebook: resources/dag-1.qmd
+      title: Data generating process
+    - notebook: resources/ouilove_plot.ipynb
+      title: Outcome-informed Love plot
