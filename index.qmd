@@ -238,7 +238,11 @@ Both variants can benefit by the same augmenting encoding (@fig-oui-bal-plot).
 
 
 #### Scale-less relative ranking
-
+The main limitation of the outcome-informed ASMD score is that it losses scale. 
+ASMD has a clear scale in standard deviation units.
+It can both be interpreted as Cohen's d and is very well-established, so thresholds---although arbitrary---are still fairly understood and agreed on.
+The outcome-informed ASMD score, on the other hand, being a multiply of the ASMD, no longer enjoys the familiarity and interpretability of the original ASMD, as it has no absolute scale.
+Therefore, its utility is only in its ranking, comparing covariates relative to other covariates in the same analytic dataset. 
 
 
 #### emphasizes prognostic measures
