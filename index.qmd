@@ -145,12 +145,14 @@ In fact, that covariate creates a distorted image of the desired confounder bala
 One possible solution is combining the ASMD with the covariate importance measures into a single number metric. 
 In this manuscript, we argue for the multiplication of the two.
 Multiplication can assess the interaction of the two complementary, orthogonal measures.
-Specifically, it addresses the issue depicted above naturally, by allowing the two measures to cancel out each other. 
+Specifically, it addresses the issue depicted above naturally, by allowing the two measures to cancel out each other (@fig-oui-asmd-score). 
 For example, small covariate-outcome importance will lead to small score overall, regardless of how large or small is the corresponding ASMD,
 <!-- and similarly for small ASMD.  -->
 and vice versa.
 <!-- This answers directly the desiderata -->
 High scoring covariates will, therefore, only be comprised of both large ASMD *and* large covariate-outcome importance - meaning strong covariate-exposure association and strong covariate-outcome association, which is exactly the definition of a confounder.
+
+{{< embed notebooks/ouilove_plot.ipynb#fig-oui-asmd-score >}}
 
 ## Methods
 
@@ -216,6 +218,10 @@ describes a setting where $X_0, X_A, X_Y$ are wrongly considered to be confounde
 ### More covariate balance plots
 This encoding is not limited to the standard Love plot,
 but to other covariate-balance plots as well like scatter plots and slope graphs
+
+### relativism
+
+### emphasizes prognostic measures
 
 ### TODO:
 if our method is just the importance of outcome, we can end up balancing many prognostic confounders that are not actually confounders. 
