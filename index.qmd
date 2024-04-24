@@ -26,7 +26,8 @@ TODO:
  * language
  * citations
  * discussion
- * scatter and slope graph examples
+
+ 
 ## Abstract
 
 ## Introduction
@@ -226,6 +227,14 @@ emphasizing covariates that are both imbalanced *and* drive change in the outcom
 
 
 ### Augmenting more than Love plots
+The augmentation presented, encoding covariate-outcome importance in the opacity and/or size channels,
+is not only limited to the standard, traditional Love plot.
+Covariate imbalance, pre- and post-adjustment, can sometimes be presented as either scatter plots or slope-graphs.
+In scatter plots, the adjusted and unadjusted ASMD are plotted on the x and y axes.
+In slope graphs, the pre- post adjustment indication is mapped to the x-axis snd the ASMD to the y-axis.
+Scatter plots are better suited for high-dimensional settings where plotting all covariates on the y-axis axis is infeasible (or at least too crowded). 
+Slope graphs have a similar strength, compromising some information richness in exchange of emphasizing overall reduction in ASMD. 
+Both variants can benefit by the same augmenting encoding (@fig-oui-bal-plot). 
 
 
 ### relativism
@@ -236,3 +245,11 @@ emphasizing covariates that are both imbalanced *and* drive change in the outcom
 if our method is just the importance of outcome, we can end up balancing many prognostic confounders that are not actually confounders. 
 we can also calculate the covariate-exposure importance and then multiple the two importances.
 But doesn't the covariate-exposure importance captures by the ASMD to begin with?
+
+
+
+
+## Appendix {.appendix}
+#### Outcome-informed balance plots
+{{< embed notebooks/ouibalance_plot.ipynb#fig-oui-bal-plot >}}
+
