@@ -26,7 +26,7 @@ TODO:
  * language
  * citations
  * discussion
- * OUI-ASMD score. 
+ * scatter and slope graph examples
 ## Abstract
 
 ## Introduction
@@ -215,9 +215,18 @@ describes a setting where $X_0, X_A, X_Y$ are wrongly considered to be confounde
 
 ## Discussion
 
-### More covariate balance plots
-This encoding is not limited to the standard Love plot,
-but to other covariate-balance plots as well like scatter plots and slope graphs
+We have introduced an augmentation to the Love plot, 
+incorporating additional information about covariate-outcome importance.
+Love plot is a common graphical diagnostic for group balancing methods in causal inference,
+visualizing the (Absolute) Standardized Mean Difference (ASMD) for each covariate before and after adjustment.
+ASMD alone, however, can be misleading if the covariates under investigation are not true confounding variables,
+influencing both exposure and outcome.
+Therefore, outcome-informed Love plot can help a fuller picture, 
+emphasizing covariates that are both imbalanced *and* drive change in the outcome.
+
+
+### Augmenting more than Love plots
+
 
 ### relativism
 
