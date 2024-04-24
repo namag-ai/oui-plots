@@ -226,7 +226,7 @@ Therefore, outcome-informed Love plot can help a fuller picture,
 emphasizing covariates that are both imbalanced *and* drive change in the outcome.
 
 
-### Augmenting more than Love plots
+#### Augmenting more than just Love plots
 The augmentation presented, encoding covariate-outcome importance in the opacity and/or size channels,
 is not only limited to the standard, traditional Love plot.
 Covariate imbalance, pre- and post-adjustment, can sometimes be presented as either scatter plots or slope-graphs.
@@ -237,9 +237,11 @@ Slope graphs have a similar strength, compromising some information richness in 
 Both variants can benefit by the same augmenting encoding (@fig-oui-bal-plot). 
 
 
-### relativism
+#### Scale-less relative ranking
 
-### emphasizes prognostic measures
+
+
+#### emphasizes prognostic measures
 
 ### TODO:
 if our method is just the importance of outcome, we can end up balancing many prognostic confounders that are not actually confounders. 
