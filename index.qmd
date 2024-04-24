@@ -22,7 +22,11 @@ keywords:
 #     fig-format: svg
 # jupyter: python3
 ---
-
+TODO: 
+ * language
+ * citations
+ * discussion
+ * OUI-ASMD score. 
 ## Abstract
 
 ## Introduction
@@ -31,7 +35,7 @@ Generally, balance diagnostics assess the difference in covariate distribution b
 Intuitively, if the covariate distribution is the same across exposure groups, there will be no systematic bias in exposure and difference in outcomes will only be due to the exposure status.
 Therefore, balancing is the most common diagnostics for assessing balancing methods, like inverse propensity weighting (IPW) or matching [cite that review]. 
 
-Ideally, covariate balance is assessed over \emph{confounding variables}.
+Ideally, covariate balance is assessed over *confounding variables*.
 These are variables affecting both the exposure and the outcome, 
 and which failing to adjust for can introduce bias when examining the influence of the exposure on the outcome.
 <!-- Usually, we would like to examine how pre-adjustment confounders differ across exposure groups, and whether adjustment (like IPW or Matching) was able to reduce those differences, effectively eliminating their contribution on the outcome, and therefore isolating the effect of exposure. -->
@@ -50,8 +54,8 @@ When specifying how any pair of variables interact,
 the exclusion of an edge -- assuming there is no association whatsoever -- is a much stronger assumption than its inclusion -- allowing the model to infer zero association from the data.
 Thus, when determining the structure, modellers may prefer to err on the inclusion of edges, rather than their exclusion.
 
-Most importantly, since the structure -- and therefore the confounders -- are determined a-priori, based on prior knowledge rather than data, we denote them \emph{structural confounders}.
-However, an a-priori \emph{structural confounder} may not necessarily be an a-posteriori \emph{statistical confounder}.
+Most importantly, since the structure -- and therefore the confounders -- are determined a-priori, based on prior knowledge rather than data, we denote them *structural confounders*.
+However, an a-priori *structural confounder* may not necessarily be an a-posteriori *statistical confounder*.
 Namely, the prior assumption a variable is associated with both exposure and outcome may not manifest at the data at hand.
 This is quite plausible, even in the absence of finite sampling errors, since we often build DAGs one pair at a time, failing to grasp how many factors may interact to determine the exposure or outcome conditioned on all the other factors.
 For instance, a factor we assumed is considered when prescribing medicine may not be used,
@@ -146,7 +150,7 @@ For example, small covariate-outcome importance will lead to small score overall
 <!-- and similarly for small ASMD.  -->
 and vice versa.
 <!-- This answers directly the desiderata -->
-High scoring covariates will, therefore, only be comprised of both large ASMD \emph{and} large covariate-outcome importance - meaning strong covariate-exposure association and strong covariate-outcome association, which is exactly the definition of a confounder.
+High scoring covariates will, therefore, only be comprised of both large ASMD *and* large covariate-outcome importance - meaning strong covariate-exposure association and strong covariate-outcome association, which is exactly the definition of a confounder.
 
 ## Methods
 
