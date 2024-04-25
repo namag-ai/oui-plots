@@ -259,14 +259,6 @@ The limitation of them being scale-less is irrelevant because the visual use is 
 :::
 
 
-### TODO:
-if our method is just the importance of outcome, we can end up balancing many prognostic confounders that are not actually confounders. 
-we can also calculate the covariate-exposure importance and then multiple the two importances.
-But doesn't the covariate-exposure importance captures by the ASMD to begin with?
-
-
-
-
 ## Appendix {.appendix}
 #### Outcome-informed balance plots
 {{< embed notebooks/ouibalance_plot.ipynb#fig-oui-bal-plot >}}
