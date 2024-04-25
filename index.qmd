@@ -23,11 +23,6 @@ bibliography: references.bib
 #     fig-format: svg
 # jupyter: python3
 ---
-TODO: 
-
- * language
- * citations
-
  
 ## Abstract
 
