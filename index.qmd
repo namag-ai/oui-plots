@@ -234,9 +234,18 @@ Slope graphs have a similar strength, compromising some information richness (co
 @fig-oui-bal-plot demonstrates both variants can benefit by the same augmenting encoding. 
 
 
+#### Assessing the utility of Outcome-informed Love plots
+The main limitation of this manuscript is that its fundamental premise is not validated empirically. 
+We *believe* outcome-informed Love plots are useful since we are practitioners and we found them to be so.
+However, anecdotal evidence is not good evidence.
+The proper way to examine the utility of our suggested augmentation is to conduct a user study, 
+providing causal inference practitioners with the traditional Love plot and our extension (even breaking down the different channels and its combinations) and evaluating whether they indeed benefitted from it. 
+This, however, is out of scope for our current work. 
+
+
 #### Scale-less relative ranking
-The main limitation of the outcome-informed ASMD score is that it losses scale. 
-ASMD has a clear scale in standard deviation units of the data.
+A second limitation considers the lack of interpretable scale for the outcome-informed ASMD score. 
+The ASMD has a clear scale in standard deviation units of the data.
 It is well-established and can be interpreted as Cohen's d (@austin2009balance), 
 <!-- It can both be interpreted as Cohen's d and is very well-established,  -->
 so thresholds---although arbitrary---are still fairly understood and agreed on.
