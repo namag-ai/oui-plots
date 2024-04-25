@@ -267,6 +267,9 @@ influencing both exposure and outcome.
 Therefore, outcome-informed Love plot can help a fuller picture, 
 emphasizing covariates that are both imbalanced *and* drive change in the outcome.
 
+Oui-Love plots[^1] is an easy-to-implement idea that can support the workflow of causal inference practitioners
+and we hope it will.
+[^1]: Yes, we love plots.
 
 ## Appendix {.appendix}
 #### Outcome-informed balance plots
