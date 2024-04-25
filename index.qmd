@@ -17,6 +17,7 @@ keywords:
   # - Propensity score
   # - Matching
   # - Inverse probability weighting
+bibliography: references.bib
 # format:
 #   html:
 #     fig-format: svg
@@ -34,11 +35,11 @@ TODO:
 Covariate balancing is a significant and essential concept for causal inference from observational studies.
 Generally, balance diagnostics assess the difference in covariate distribution between exposures levels.
 Intuitively, if the covariate distribution is the same across exposure groups, there will be no systematic bias in exposure and difference in outcomes will only be due to the exposure status.
-Therefore, balancing is the most common diagnostics for assessing balancing methods, like inverse propensity weighting (IPW) or matching [cite that review]. 
+Therefore, balancing is the most common diagnostics for assessing balancing methods, like inverse propensity weighting (IPW) or matching [@ali2015reporting; @granger2020review]. 
 
 Ideally, covariate balance is assessed over *confounding variables*.
 These are variables affecting both the exposure and the outcome, 
-and which failing to adjust for can introduce bias when examining the influence of the exposure on the outcome.
+and which failing to adjust for can introduce bias when examining the influence of the exposure on the outcome [@hernan2002causal].
 <!-- Usually, we would like to examine how pre-adjustment confounders differ across exposure groups, and whether adjustment (like IPW or Matching) was able to reduce those differences, effectively eliminating their contribution on the outcome, and therefore isolating the effect of exposure. -->
 Adjusting for these confounders reduces their difference across exposure groups,
 effectively equaling their influence on the outcome across exposure groups;
@@ -47,13 +48,13 @@ thus enabling the model to isolate the effect of the exposure.
 Whether a variable is a confounder cannot be determined from the data itself. 
 Therefore, the most common approach to select confounders for an adjustment set 
 <!-- (and more generally, how any pair of variables interact)  -->
-is to let a domain expert hand pick them manually.
+is to let a domain expert hand pick them manually [@hernan2002causal; @tennant2021use].
 The structure arising from this specification is often formulated and presented as a Directed Acyclic Graph (DAG),
-where variables are depicted as nodes and two nodes are connected by an arrow if one causally influences the other [cite DAG intro].
+where variables are depicted as nodes and two nodes are connected by an arrow if one causally influences the other [@greenland1999causal].
 <!-- Since This formulation of the structure of the problem, often through a Directed Acyclic Graph (DAG),  -->
 When specifying how any pair of variables interact,
-the exclusion of an edge -- assuming there is no association whatsoever -- is a much stronger assumption than its inclusion -- allowing the model to infer zero association from the data.
-Thus, when determining the structure, modellers may prefer to err on the inclusion of edges, rather than their exclusion.
+the omission of an edge -- assuming there is no association whatsoever -- is a much stronger assumption than its inclusion -- allowing the model to infer zero association from the data.
+Thus, when determining the structure, modellers may prefer to err on the inclusion of edges, rather than their omission [@tennant2021use; @greenland1999causal].
 
 Most importantly, since the structure -- and therefore the confounders -- are determined a-priori, based on prior knowledge rather than data, we denote them *structural confounders*.
 However, an a-priori *structural confounder* may not necessarily be an a-posteriori *statistical confounder*.
@@ -63,15 +64,15 @@ For instance, a factor we assumed is considered when prescribing medicine may no
 or we can fail to understand the mechanism under which a certain factor conditionally explains the outcome.
 Both will result with the factor not being statistically associated with the exposure or outcome, respectively (or both).
 
-Covariate balance assessments only capture covariate-exposure associations.
-This can be insufficient.
+Therefore, covariate balance assessments that only capture covariate-exposure associations can be insufficient.
 For example, such a putative confounder may heavily influence differential exposure, leading to high imbalance, but have no impact on the outcome (these may be referred to as instrumental variables).
-In such cases, it will be unnecessary (or even harmful [cite z-bias]) to balance over that putative confounder.
-However, commonly used diagnostics like the (Absolute) Standardized Mean Difference (ASMD) [cite] and the corresponding Love plot [cite] will fail to capture that and may mislead the researcher to focus on where they should not.
+In such cases, it will be unnecessary (or even harmful [@ding2017instrumental]) to balance over that putative confounder.
+However, commonly used diagnostics like the (Absolute) Standardized Mean Difference (ASMD) [@austin2009balance] and the corresponding Love plot [@ahmed2006heart] will fail to capture that and may mislead the researcher to focus on where they should not.
 
-To overcome that, information about the covariate-outcome association should be incorporated to provide a fuller picture.
-Fortunately, assessing the statistical importance of a variable on an outcome is a very known problem in regression modeling and machine learning [cite one harrell one ML book].
-Assessing covariate-outcome importance will provide us with additional information -- orthogonal to the covariate-exposure balance assessment -- that will allow us to, literally speaking, paint a fuller picture about confounder imbalance.
+To overcome this issues, information about the covariate-outcome association should be incorporated to provide a fuller picture.
+Fortunately, assessing the statistical importance of a variable on an outcome is a very known problem in regression modeling and machine learning [@harrell2001regression, chapter 9.8.4; @shalev2014understanding chapter 25].
+Assessing covariate-outcome importance will provide us with additional information orthogonal and complementary to the covariate-exposure balance assessment. 
+This will allow us to, literally speaking, paint a fuller picture about confounder imbalance.
 
 Our contribution in this manuscript is twofold.
 First, we will provide visual augmentation to the known Love plot based on both standardized mean difference and covariate-outcome importance.
@@ -90,9 +91,9 @@ Second, we will combine both measures together to suggest better metrics for cov
 <!-- To justify our approach, we briefly introduce the basic concept behind data visualization. -->
 Data visualization allows us to encode numeric data values as visual elements.
 When we "visualize data" we essentially map between data values to graphical elements.
-Good, consistent visualization will map different dimensions of the data to different encoding channel types using appropriate graphical marks. 
+Good, consistent visualization will map different dimensions of the data to different encoding channel types using appropriate graphical marks [@wilke2019fundamentals, chapter 2]. 
 
-For instance, a classic Love plot [cite] (@fig-love-oui-love) maps 
+For instance, a traditional Love plot (@fig-love-oui-love) maps 
 the covariates to the y-axis - so each covariates get its own row,
 the (absolute) standardized mean difference (ASMD) of each covariate to the x-axis,
 the type of the model (e.g., weighted/unweighted) to the color (blue/orange)
@@ -106,26 +107,29 @@ the covariate-outcome impact ("feature importance") of each covariate on the out
 The covariate-outcome importance is a non-negative score positively associated with importance.
 Namely, a low score indicates relatively small importance -- a change in the covariate levels is associated with only small changes in the outcome, 
 and a high score indicates relatively high importance -- a change in the covariate levels is associated with large changes in the outcome.
-There are several approaches to calculate feature importance, which we describe in more details in the Methods [cross ref].
+[TODO: THAT'S MORE REGRESSION THAN ACCURACY]
+There are several approaches to calculate feature importance, which we describe in more details in the [Methods](#methods) section.
 
 To augment the traditional Love plot, 
-the additional dimension for the covariate-outcome importance score should be mapped to one or more visual channels.
-In this work we suggest three candidate channels [@fig-oui-encoding], which can be combined arbitrarily:
+the additional dimension for the covariate-outcome importance score is mapped to one or more visual channels.
+In this work we suggest three candidate channels, which can be combined arbitrarily:
   
   1. The opacity channel. Marks corresponding to more important covariates are more opaque, while less important marks are more transparent. 
   2. The size channel. Marks corresponding to more important covariate are larger, while less important marks are smaller.
   3. The order of the y-axis. Covariates are ranked by their importance with more important covariates appearing on top. 
 
+See @fig-oui-encoding for a graphical example of each. 
+
 The common property for options (1) and (2) is that less important covariates appear less prominent, 
 either being smaller or more transparent. 
 The argument being that if they do not influence the outcome, they will not bias the estimation, and therefore are not important and less interesting to examine.
 If they are less interesting to examine, there is less need for them to stand out and can therefore be salient. 
-This will reduce clutter and allow the viewer to focus on the more important (and thus prominent) covariates.
+This will reduce clutter and allow the viewer to focus on the more important (and thus visually prominent) covariates.
 Meanwhile, option (3) clusters more important covariates to specific regions of the plot, 
 but breaks the standard of ordering covariates by the unadjusted ASMD that may be familiar to practitioners. 
 All options achieve a similar objective of differential attention onto more important covariates, 
 either by differential prominence (transparency and size) or by differential spatial location (order).
-See Figure [cross ref] for details.
+<!-- See Figure [cross ref] for details. -->
 
 :::{.column-screen-inset}
 {{< embed notebooks/ouilove_plot.ipynb#fig-oui-encoding >}}
@@ -134,18 +138,18 @@ See Figure [cross ref] for details.
 ## Outcome-informed balance metrics
 Oftentimes, we use the ASMD for model selection.
 For instance, the maximum ASMD after adjustment (e.g., weighting or matching) across all covariates can be considered as a good summary of the Love plot. 
-Max post-adjustment ASMD describes the worst case scenario for imbalance.
-If our model can keep the max ASMD -- and therefore the ASMD for all covariate -- under reasonable tolerance (0.1 threshold is arbitrarily but commonly used), then we can gain further trust in the downstream effect being estimated.
-Once we have a single numeric metric that diagnoses model performance, we can use it to choose between two (or more) candidates models, choosing the one with minimal post-adjustment max ASMD.
+Maximal post-adjustment ASMD describes the worst case scenario for imbalance.
+If our model can keep the max ASMD -- and therefore the ASMD for all covariates -- under reasonable tolerance (0.1 threshold is arbitrarily but commonly used), then we can gain further trust in the downstream effect being estimated.
+Once we have a single numeric metric that can diagnose model performance, we can use it to choose between two (or more) candidate models, choosing the one with minimal post-adjustment max ASMD.
 
 However, as argued above, ASMD alone can be a poor diagnostic. 
 If the covariate with max ASMD has little conditional association with the outcome, there is little benefit in making the effort to improve its balancing. 
 That covariate should not be part of the model's objective.
 In fact, that covariate creates a distorted image of the desired confounder balance.
 
-One possible solution is combining the ASMD with the covariate importance measures into a single number metric. 
+One possible solution is combining the ASMD with the covariate-outcome importance measures into a single numeric score. 
 In this manuscript, we argue for the multiplication of the two.
-Multiplication can assess the interaction of the two complementary, orthogonal measures.
+Multiplication can assess the interaction of the two orthogonal measures.
 Specifically, it addresses the issue depicted above naturally, by allowing the two measures to cancel out each other (@fig-oui-asmd-score). 
 For example, small covariate-outcome importance will lead to small score overall, regardless of how large or small is the corresponding ASMD,
 <!-- and similarly for small ASMD.  -->
@@ -166,34 +170,35 @@ Mathematically, for each covariate $j$ we define:
 $$
 SMD_j = \frac{\bar{x}_j \vert_{A=1}- \bar{x}_j\vert_{A=0}}{\sqrt{\hat{\sigma}_j^2\vert_{A=1} + \hat{\sigma}_j^2\vert_{A=0}}}
 $$
+
 Where $\bar{x}_j \vert_{A=1}$ is the average of feature $x_j$ among those exposed, and $\hat{\sigma}_j^2\vert_{A=0}$ is the estimated standard deviation of $x_j$ among the unexposed.
-Furthermore, since the direction of the bias is insignificant, we further take the absolute value and denote the $ASMD_j = \left\vert SMD_j \right\vert$.
+Furthermore, since the direction of the bias is insignificant for our purposes, we further take the absolute value and denote the $ASMD_j = \left\vert SMD_j \right\vert$.
 
 ### Covariate importance measures
 The task of assessing the influence of covariates on an outcome is a well established task in statistics,
 often utilized for dimensionality reduction (feature selection) or model selection.
 There are multiple approaches to compute this importance:
 regression models can use absolute magnitude of coefficients (assuming input is standardized), 
-or non-zero coefficients in L1-penalized (LASSO) regression.
+or non-zero coefficients in L1-penalized regression (LASSO).
 In models more generally, covariate importance can be assessed by how "excluding" each covariate affect some goodness-of-fit metric. 
 This "exclusion" is either done by removing the feature entirely from the model or just shuffling its values across observations.
 The goodness-of-fit evaluated can be any arbitrary metric like decreasing the loss or increasing the accuracy.
-The change in goodness-of-fit can either be multiplicative or additive, grounding the full model (with al covariates) as the baseline to compare against.
-Covariates that are more important for predicting the outcome will cause larger decrease in performance relative to the full model (including these covariates), meaning they are the ones driving the accuracy of the predictions.
+The change in goodness-of-fit can either be multiplicative or additive, grounding the full model (with all covariates) as the baseline to compare against.
+Covariates that are more important for predicting the outcome will cause larger decrease in performance relative to the full model (that includes these covariates), meaning they are the ones driving the accuracy of the predictions.
 
 In this work, our goodness-of-fit metric is the natural deviance, which, since our outcome is continuous, is the mean squared error. 
+The importance of a covariate is defined as the difference in deviance between the full model and the model fitted with that covariate removed (divided by the deviance of the full model, similar to percent change calculations.)
 Additionally, we consider only importance measures that are conditional on all other covariates and exposure.
-Namely, we don't consider multiple univariable importance measures, and we always additionally condition on the exposure [vanderwheele]. 
+Namely, we don't consider multiple univariable importance measures, and we always additionally condition on the exposure [@vanderweele2019principles]. 
 However, outcome-informed Love plot can work with any arbitrary non-negative importance measure, where lower scores correspond to small importance and higher scores to high importance.
 
 ### Data
-
 We present our augmented Love plot on a minimally sufficient data simulation.
 The simulation includes four covariates, 
 one ($X_0$) is not associated with neither the exposure ($A$) nor the outcome ($Y$),
 one ($X_A$) is associated only with the exposure, 
 another ($X_Y$) only with the outcome,
-and one ($X_{AY}$), whose a true confounder, is associated with both.
+and one true confounder ($X_{AY}$) that is associated with both.
 Mathematically, the full generating process is
 $$
 \begin{aligned}
@@ -204,6 +209,7 @@ $$
   \epsilon &\sim \text{Normal}(0, 1)
 \end{aligned}
 $$
+
 The directed acyclic graph depicting this setting (@fig-dag1) 
 describes a setting where $X_0, X_A, X_Y$ are wrongly considered to be confounders (influence both exposure and outcome) a-priori, but are actually not.
 
