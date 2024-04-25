@@ -221,48 +221,51 @@ describes a setting where $X_0, X_A, X_Y$ are wrongly considered to be confounde
 <!-- ## Results? -->
 
 ## Discussion
+We further present advantages, limitations, and extensions to the outcome-informed Love plots. 
 
-We have introduced an augmentation to the Love plot, 
-incorporating additional information about covariate-outcome importance.
+#### Augmenting more than just Love plots
+The augmentation presented, encoding covariate-outcome importance in the opacity and/or size channels,
+is not only limited to the standard, traditional Love plot.
+Covariate imbalance, pre- and post-adjustment, can sometimes be presented as either scatter plots or slope-graphs.
+In scatter plots, the adjusted and unadjusted ASMDs are plotted on the x and y axes.
+In slope graphs, the pre/post-adjustment indication is mapped to the x-axis and the ASMD to the y-axis.
+Scatter plots are better suited for high-dimensional settings where plotting all covariates on the y-axis is infeasible (or at least too crowded). 
+Slope graphs have a similar strength, compromising some information richness (covariate identity) in exchange of emphasizing overall reduction in ASMD. 
+@fig-oui-bal-plot demonstrates both variants can benefit by the same augmenting encoding. 
+
+
+#### Scale-less relative ranking
+The main limitation of the outcome-informed ASMD score is that it losses scale. 
+ASMD has a clear scale in standard deviation units of the data.
+It is well-established and can be interpreted as Cohen's d (@austin2009balance), 
+<!-- It can both be interpreted as Cohen's d and is very well-established,  -->
+so thresholds---although arbitrary---are still fairly understood and agreed on.
+The outcome-informed ASMD score, on the other hand, being a multiply of the ASMD, no longer enjoys the familiarity and interpretability of the original ASMD, as it has no absolute scale.
+Therefore, its utility is only in its ranking, comparing covariates relative to other covariates in the same analytic sample. 
+
+
+#### Augmenting Love plot with outcome-informed ASMD
+Another small limitation of the Love plot augmented by covariate-outcome importance is that
+it may over emphasize prognostic variables.
+Those may still be differentiated from confounders by having small ASMD (because they have no covariate-exposure association), 
+but this still forces the researcher to be more mindful when examining the plot for imbalance in confounding factors.
+The immediate solution is thus to use the combined outcome-informed ASMD score. 
+The limitation of them being scale-less is irrelevant because the visual use is just about ranking confounding variables above prognostic variables, which the outcome-informed ASMD score still faithfully fulfills. 
+@fig-ouiasmd-love shows the difference between an outcome-informed Love plot and a Love plot augmented by outcome-informed ASMD score.
+
+:::{.column-body-outset}
+{{< embed notebooks/ouilove_plot.ipynb#fig-ouiasmd-love >}}
+:::
+
+### Summary
+We have introduced an augmentation to the Love plot 
+by incorporating additional information about covariate-outcome importance.
 Love plot is a common graphical diagnostic for group balancing methods in causal inference,
 visualizing the (Absolute) Standardized Mean Difference (ASMD) for each covariate before and after adjustment.
 ASMD alone, however, can be misleading if the covariates under investigation are not true confounding variables,
 influencing both exposure and outcome.
 Therefore, outcome-informed Love plot can help a fuller picture, 
 emphasizing covariates that are both imbalanced *and* drive change in the outcome.
-
-
-#### Augmenting more than just Love plots
-The augmentation presented, encoding covariate-outcome importance in the opacity and/or size channels,
-is not only limited to the standard, traditional Love plot.
-Covariate imbalance, pre- and post-adjustment, can sometimes be presented as either scatter plots or slope-graphs.
-In scatter plots, the adjusted and unadjusted ASMD are plotted on the x and y axes.
-In slope graphs, the pre- post adjustment indication is mapped to the x-axis snd the ASMD to the y-axis.
-Scatter plots are better suited for high-dimensional settings where plotting all covariates on the y-axis axis is infeasible (or at least too crowded). 
-Slope graphs have a similar strength, compromising some information richness in exchange of emphasizing overall reduction in ASMD. 
-Both variants can benefit by the same augmenting encoding (@fig-oui-bal-plot). 
-
-
-#### Scale-less relative ranking
-The main limitation of the outcome-informed ASMD score is that it losses scale. 
-ASMD has a clear scale in standard deviation units.
-It can both be interpreted as Cohen's d and is very well-established, so thresholds---although arbitrary---are still fairly understood and agreed on.
-The outcome-informed ASMD score, on the other hand, being a multiply of the ASMD, no longer enjoys the familiarity and interpretability of the original ASMD, as it has no absolute scale.
-Therefore, its utility is only in its ranking, comparing covariates relative to other covariates in the same analytic dataset. 
-
-
-#### Augmenting Love plot with outcome-informed ASMD
-Another small limitation of the Love plot augmented by covariate-outcome importance is that
-it may over emphasize prognostic variables.
-Those may still be differentiated by having small ASMD (because they have no covariate-exposure association), thus still forcing the researcher to be more mindful looking for confounding factors.
-The immediate solution is thus to use the combined outcome-informed ASMD score. 
-The limitation of them being scale-less is irrelevant because the visual use is just about ranking confounding variables above prognostic variables, which the outcome-informed ASMD score still fulfills faithfully. 
-@fig-ouiasmd-love shows the difference between outcome-informed Love plot and Love plots augmented by outcome-informed ASMD score.
-
-
-:::{.column-body-outset}
-{{< embed notebooks/ouilove_plot.ipynb#fig-ouiasmd-love >}}
-:::
 
 
 ## Appendix {.appendix}
