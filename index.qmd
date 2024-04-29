@@ -100,10 +100,11 @@ to three graphical channels: y-axis, x-axis, and color
 In an outcome-informed Love plot, we calculate an additional data dimension: 
 the covariate-outcome impact ("feature importance") of each covariate on the outcome.
 The covariate-outcome importance is a non-negative score positively associated with importance.
-Namely, a low score indicates relatively small importance -- a change in the covariate levels is associated with only small changes in the outcome, 
+There are several approaches to calculate feature importance, which we describe in more details in the [Methods](#methods) section,
+but briefly, a low score indicates relatively small importance -- a change in the covariate levels is associated with only small changes in the outcome, 
 and a high score indicates relatively high importance -- a change in the covariate levels is associated with large changes in the outcome.
 [TODO: THAT'S MORE REGRESSION THAN ACCURACY]
-There are several approaches to calculate feature importance, which we describe in more details in the [Methods](#methods) section.
+
 
 To augment the traditional Love plot, 
 the additional dimension for the covariate-outcome importance score is mapped to one or more visual channels.
@@ -138,13 +139,13 @@ If our model can keep the max ASMD -- and therefore the ASMD for all covariates 
 Once we have a single numeric metric that can diagnose model performance, we can use it to choose between two (or more) candidate models, choosing the one with minimal post-adjustment max ASMD.
 
 However, as argued above, ASMD alone can be a poor diagnostic. 
-If the covariate with max ASMD has little conditional association with the outcome, there is little benefit in making the effort to improve its balancing. 
+If the covariate with max ASMD has little influence on the outcome, there is little benefit in making the effort to improve its balance. 
 That covariate should not be part of the model's objective.
 In fact, that covariate creates a distorted image of the desired confounder balance.
 
 One possible solution is combining the ASMD with the covariate-outcome importance measures into a single numeric score. 
-In this manuscript, we argue for the multiplication of the two.
-Multiplication can assess the interaction of the two orthogonal measures.
+In this manuscript, we argue for the multiplication of the two,
+as it can assess the interaction of the two orthogonal measures.
 Specifically, it addresses the issue depicted above naturally, by allowing the two measures to cancel out each other (@fig-oui-asmd-score). 
 For example, small covariate-outcome importance will lead to small score overall, regardless of how large or small is the corresponding ASMD,
 <!-- and similarly for small ASMD.  -->
