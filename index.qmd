@@ -101,9 +101,9 @@ In an outcome-informed Love plot, we calculate an additional data dimension:
 the covariate-outcome impact ("feature importance") of each covariate on the outcome.
 The covariate-outcome importance is a non-negative score positively associated with importance.
 There are several approaches to calculate feature importance, which we describe in more details in the [Methods](#methods) section,
-but briefly, a low score indicates relatively small importance -- a change in the covariate levels is associated with only small changes in the outcome, 
-and a high score indicates relatively high importance -- a change in the covariate levels is associated with large changes in the outcome.
-[TODO: THAT'S MORE REGRESSION THAN ACCURACY]
+but briefly, a low score indicates relatively small importance -- a change in the covariate levels is associated with little change in the predicted outcome, 
+and a high score indicates relatively high importance -- a change in the covariate levels is associated with large changes in the predicted outcome.
+Put differently, more important covariates explain more variation in the outcome. 
 
 
 To augment the traditional Love plot, 
