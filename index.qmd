@@ -71,8 +71,7 @@ This will allow us to, literally speaking, paint a fuller picture about confound
 
 Our contribution in this manuscript is twofold.
 First, we will provide visual augmentation to the known Love plot based on both standardized mean difference and covariate-outcome importance.
-Second, we will combine both measures together to suggest better metrics for covariate/model selection.
-[TODO: isn't high-dimensional propensity score?].
+Second, we will combine both measures together to suggest a better metric for covariate/model selection and further enhance Love plots or any other balance assessment plots.
 
 
 ## Outcome-informed Love plot
