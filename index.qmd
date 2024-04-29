@@ -86,10 +86,10 @@ Second, we will combine both measures together to suggest better metrics for cov
 <!-- To justify our approach, we briefly introduce the basic concept behind data visualization. -->
 Data visualization allows us to encode numeric data values as visual elements.
 When we "visualize data" we essentially map between data values to graphical elements.
-Good, consistent visualization will map different dimensions of the data to different encoding channel types using appropriate graphical marks [@wilke2019fundamentals, chapter 2]. 
+Good, consistent visualization will map different dimensions of the data to different types of encoding channels using appropriate graphical marks [@wilke2019fundamentals, chapter 2]. 
 
 For instance, a traditional Love plot (@fig-love-oui-love) maps 
-the covariates to the y-axis - so each covariates get its own row,
+the covariates to the y-axis - so each covariate gets its own row,
 the (absolute) standardized mean difference (ASMD) of each covariate to the x-axis,
 the type of the model (e.g., weighted/unweighted) to the color (blue/orange)
 and possibly also to different markers (circle/triangle).
@@ -97,7 +97,7 @@ All in all, we mapped three data dimensions: covariates, their ASMD, and adjustm
 to three graphical channels: y-axis, x-axis, and color 
 (and possibly a fourth channel of marker shape for emphasis).
 
-In outcome-informed Love plot, we calculate an additional data dimension: 
+In an outcome-informed Love plot, we calculate an additional data dimension: 
 the covariate-outcome impact ("feature importance") of each covariate on the outcome.
 The covariate-outcome importance is a non-negative score positively associated with importance.
 Namely, a low score indicates relatively small importance -- a change in the covariate levels is associated with only small changes in the outcome, 
