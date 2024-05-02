@@ -11,11 +11,13 @@ date-modified: last-modified
 keywords: 
   - Causal inference
   - Data visualization
-  - Standardized mean difference
+  - Standardized difference
   - Model evaluation
-  - Feature selection
-  # - Propensity score
-  # - Matching
+  - Variable selection
+  - Balance
+  - Observational study
+  - Propensity score
+  - Matching
   # - Inverse probability weighting
 bibliography: references.bib
 # format:
