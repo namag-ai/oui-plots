@@ -126,7 +126,7 @@ All options achieve a similar objective of differential attention onto more impo
 either by differential prominence (transparency and size) or by differential spatial location (order).
 <!-- See Figure [cross ref] for details. -->
 
-:::{.column-screen-inset}
+:::{.column-body-outset}
 {{< embed notebooks/ouilove_plot.ipynb#fig-oui-encoding >}}
 :::
 
@@ -284,6 +284,7 @@ and we hope it will.
 
 #### Outcome importance-only vs. outcome-informed ASMD augmentation
 Augmenting Love plots with outcome importance or the combined outcome informed ASMD score.
+
 :::{.column-body-outset}
 {{< embed notebooks/ouilove_plot.ipynb#fig-ouiasmd-love >}}
 :::
