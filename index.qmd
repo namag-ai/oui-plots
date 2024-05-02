@@ -27,6 +27,21 @@ bibliography: references.bib
 ---
  
 ## Abstract
+Assessing balance between exposure groups by visualizing the absolute standardized mean differences (ASMD) in a Love plot is a common approach to diagnose models like propensity score weighting or matching.
+However, the ASMD only captures covariate-exposure associations and neglects to integrate information about the covariate-outcome associations.
+<!-- Since causal inference researchers often select covariates for adjustment sets based on a-priori domain expertise (e.g., via a directed acyclic graph), 
+they are at higher risk at treating instrumental variables or prognostic factors as confounders.  -->
+Since adjustment sets are often defined a-priori to the data (e.g., via directed acyclic graphs),
+there is an increased risk of classifying variables as confounders even if they are not actually associated with both the exposure and the outcome in the data. 
+Furthermore, since only confounders should be balanced across exposure groups, assessing the balance of non-confounders can create a skewed picture of the required balance and may mislead researchers to pursue balancing where it is not necessary.  
+
+To overcome this issue, we propose the Oui-Love plot: an OUtcome-Informed Love plot,
+consisting of two main parts.
+First, we introduce an outcome-informed ASMD score by incorporating covariate-outcome importance measures with the ASMD.
+Second, since we love plots, this additional score is visualized through several graphical channels (opacity, marker size, and covariate order) to augment the standard Love plot. 
+This enhanced Love plot can better assist researchers to evaluate balancing on variables that are more likely to bias treatment effects in the data at hand by emphasizing variables that are statistically associated with both exposure and the outcome.
+The method is modular and easy to implement with modern statistical software and may hopefully benefit causal inference researchers and practitioners.
+ 
 
 ## Introduction
 Covariate balancing is a significant and essential concept for causal inference from observational studies.
@@ -104,7 +119,7 @@ The covariate-outcome importance is a non-negative score positively associated w
 There are several approaches to calculate feature importance, which we describe in more details in the [Methods](#methods) section,
 but briefly, a low score indicates relatively small importance -- a change in the covariate levels is associated with little change in the predicted outcome, 
 and a high score indicates relatively high importance -- a change in the covariate levels is associated with large changes in the predicted outcome.
-Put differently, more important covariates explain more variation in the outcome. 
+Put differently, more important covariates explain more variation in the outcome and contribute more the accuracy of the prediction. 
 
 
 To augment the traditional Love plot, 
