@@ -117,9 +117,13 @@ In an outcome-informed Love plot, we calculate an additional data dimension:
 the covariate-outcome impact ("feature importance") of each covariate on the outcome.
 The covariate-outcome importance is a non-negative score positively associated with importance.
 There are several approaches to calculate feature importance, which we describe in more details in the [Methods](#methods) section,
-but briefly, a low score indicates relatively small importance -- a change in the covariate levels is associated with little change in the predicted outcome, 
-and a high score indicates relatively high importance -- a change in the covariate levels is associated with large changes in the predicted outcome.
-Put differently, more important covariates explain more variation in the outcome and contribute more the accuracy of the prediction. 
+<!-- but briefly, a low score indicates relatively small importance -- a change in the covariate levels is associated with little change in the predicted outcome, 
+and a high score indicates relatively high importance -- a change in the covariate levels is associated with large changes in the predicted outcome. -->
+but briefly, a low score indicates relatively small importance -- the exclusion of the covariate causes small changes in prediction error,
+nd a high score indicates relatively high importance -- the exclusion of the covariate causes large changes in the prediction error. 
+Put differently, more important covariates explain more variation in the outcome and contribute more to the accuracy[^2] of the prediction. 
+
+[^2]: We will use "accuracy" in a colloquial manner throughout. 
 
 
 To augment the traditional Love plot, 
@@ -204,17 +208,22 @@ often utilized for dimensionality reduction (feature selection) or model selecti
 There are multiple approaches to compute this importance:
 regression models can use absolute magnitude of coefficients (assuming input is standardized), 
 or non-zero coefficients in L1-penalized regression (LASSO).
-In models more generally, covariate importance can be assessed by how "excluding" each covariate affect some goodness-of-fit metric. 
-This "exclusion" is either done by removing the feature entirely from the model or just shuffling its values across observations.
-The goodness-of-fit evaluated can be any arbitrary metric like decreasing the loss or increasing the accuracy.
+A more model agnostic approach, the covariate importance can be assessed by how "excluding" each covariate affects some goodness-of-fit metric. 
+This "exclusion" is either done by removing the feature entirely [@harrell2001regression, chapter 9.8.4] from the model or just shuffling its values across observations [@breiman2001random, section 10] 
+(the latter may also be evaluated on an out-of-sample test split).
+The goodness-of-fit measure evaluated can be any arbitrary metric like decreasing the loss or increasing the accuracy.
 The change in goodness-of-fit can either be multiplicative or additive, grounding the full model (with all covariates) as the baseline to compare against.
 Covariates that are more important for predicting the outcome will cause larger decrease in performance relative to the full model (that includes these covariates), meaning they are the ones driving the accuracy of the predictions.
 
+<!-- [^2]: Colloquially speaking. For risk models, it can be mean calibration error (if you care about calibration), or area under the receiver of operating curve (if you care about discrimination), or any other confusion matrix-based metric.  -->
+
 In this work, our goodness-of-fit metric is the natural deviance, which, since our outcome is continuous, is the mean squared error. 
-The importance of a covariate is defined as the difference in deviance between the full model and the model fitted with that covariate removed (divided by the deviance of the full model, similar to percent change calculations.)
-Additionally, we consider only importance measures that are conditional on all other covariates and exposure.
-Namely, we don't consider multiple univariable importance measures, and we always additionally condition on the exposure [@vanderweele2019principles]. 
-However, outcome-informed Love plot can work with any arbitrary non-negative importance measure, where lower scores correspond to small importance and higher scores to high importance.
+<!-- The importance of a covariate is defined as the difference in deviance between the full model and the model fitted with that covariate removed (divided by the deviance of the full model, similar to percent change calculations.) -->
+The importance of a covariate is defined using the mean decrease in accuracy [@breiman2001random] -- the percentage change in deviance between the full model and the model fitted with that covariate removed.
+<!-- Additionally, we consider only importance measures that are conditional on all other covariates and the exposure.
+Namely, we don't consider multiple univariable importance measures, and we always additionally condition on the exposure [@vanderweele2019principles].  -->
+Importantly, we do not consider univariable importance measures, but rather a metric that is always conditional on the rest of the covariates and the exposure [@vanderweele2019principles]. 
+However, the outcome-informed Love plot can work with any arbitrary non-negative importance measure, as long as lower scores correspond to little importance and higher scores to high importance.
 
 ### Data
 We present our augmented Love plot on a minimally sufficient data simulation.
