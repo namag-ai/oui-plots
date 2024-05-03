@@ -128,7 +128,7 @@ Put differently, more important covariates explain more variation in the outcome
 
 To augment the traditional Love plot, 
 the additional dimension for the covariate-outcome importance score is mapped to one or more visual channels.
-In this work we suggest three candidate channels, which can be combined arbitrarily:
+In this work we suggest three candidate channels, which can be arbitrarily combined:
   
   1. The opacity channel. Marks corresponding to more important covariates are more opaque, while less important marks are more transparent. 
   2. The size channel. Marks corresponding to more important covariate are larger, while less important marks are smaller.
@@ -301,7 +301,7 @@ influencing both exposure and outcome.
 Therefore, outcome-informed Love plot can help paint a fuller picture, 
 emphasizing covariates that are both imbalanced *and* drive change in the outcome.
 
-*"Oui-Love plots"*[^1] is an easy-to-implement idea that can support the workflow of causal inference practitioners
+*"Oui-Love plots"*[^1] is a modular, extendable, and easy-to-implement idea that can support the workflow of causal inference practitioners
 and we hope it will.
 
 [^1]: Yes, we love plots.
